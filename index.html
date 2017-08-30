@@ -3,32 +3,38 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    
+
     <!-- IMPORTANDO O CSS DO BOOTSTRAP -->
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    
-    <!-- IMPORTANDO O ANGULARJS -->
-    <script src="node_modules/angular/angular.min.js"></script>
-    
-    <!-- IMPORTANDO O JAVASCRIPT DO BOOTSTRAP -->
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-    <!-- IMPORTANDO O JAVASCRIPT PRINCIPAL DO PROJETO -->
-    <script src="js/app.js"></script>
+
+    <!-- IMPORTANDO O CSS DA APLICAÇÃO -->
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  
+
   <!-- SETANDO O NOME DO MÓDULO CRIADO NO JAVASCRIPT E SETANDO O CONTROLLER A SER UTILIZADO NESSA PÁGINA -->
   <body ng-app="app" ng-controller="ListController">
     <div class="container">
-      
+
       <!-- MOSTRANDO O ATRIBUTO DE ESCOPO DE VIEW -->
       <h1>{{ nome }}</h1>
-      
+
       <h3>Exemplo de Carro</h3>
       <ul>
         <li>{{ carro.marca }}</li> <!-- MOSTRANDO O ATRIBUTO MARCA DO OBJETO CARRO -->
         <li>{{ carro.modelo }}</li> <!-- MOSTRANDO O ATRIBUTO MODELO DO OBJETO CARRO -->
       </ul>
     </div>
+
+    <!-- IMPORTANDO O ANGULARJS -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- IMPORTANDO O ANGULARJS -->
+    <script src="node_modules/angular/angular.min.js"></script>
+
+    <!-- IMPORTANDO O JAVASCRIPT DO BOOTSTRAP -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- IMPORTANDO O JAVASCRIPT PRINCIPAL DO PROJETO -->
+    <script src="js/app.js"></script>
   </body>
 </html>
