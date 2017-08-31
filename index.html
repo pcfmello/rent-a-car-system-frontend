@@ -27,7 +27,7 @@
           Listagem de reservas
         </div>
         <ul class="list-group visible-xs">
-          <li class="list-group-item">
+          <li class="list-group-item" ng-repeat="reserva in lista">
             <div class="row">
               <div class="col-xs-2">
                 <div class="checkbox">
@@ -42,7 +42,7 @@
                 Local/Filiais
               </div>
               <div class="col-xs-6">
-                Centro
+                {{reserva.local}}
               </div>
             </div>
             <div class="row">
@@ -50,7 +50,7 @@
                 Carro
               </div>
               <div class="col-xs-6">
-                Logan
+                {{reserva.carro}}
               </div>
             </div>
             <div class="row">
@@ -58,7 +58,7 @@
                 Início
               </div>
               <div class="col-xs-6">
-                30/08/2017
+               {{reserva.dataInicio}}
               </div>
             </div>
             <div class="row">
@@ -66,7 +66,7 @@
                 Fim
               </div>
               <div class="col-xs-6">
-                10/09/2017
+                {{reserva.dataFim}}
               </div>
             </div>
             <div class="row">
@@ -74,7 +74,7 @@
                 Responsável
               </div>
               <div class="col-xs-6">
-                Paulo Cesar
+                {{reserva.responsavel}}
               </div>
             </div>
             <div class="row">
@@ -82,7 +82,7 @@
                 Descrição
               </div>
               <div class="col-xs-6">
-                Viagem a trabalho por Santa Catarina
+                {{reserva.descricao}}
               </div>
             </div>
             <div class="row">
@@ -97,6 +97,8 @@
           </li>
         </ul>
       </div>
+
+
 
       <!-- <table class="table .table-hover">
         <thead>
