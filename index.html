@@ -26,7 +26,9 @@
         <div class="panel-heading">
           Listagem de reservas
         </div>
-        <ul class="list-group visible-xs">
+        <div class="panel-body" ng-if="!lista.length">Não existem reservas cadstradas</div>
+
+        <ul class="list-group visible-xs" ng-if=lista.length>
           <li class="list-group-item" ng-repeat="reserva in lista">
             <div class="row">
               <div class="col-xs-2">
@@ -96,7 +98,7 @@
           </li>
         </ul>
 
-        <table class="table .table-hover hidden-xs">
+        <table class="table .table-hover hidden-xs" ng-if=lista.length>
           <thead>
             <tr>
               <th></th>
