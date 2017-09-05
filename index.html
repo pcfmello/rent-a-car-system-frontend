@@ -23,13 +23,73 @@
       <button class="btn btn-danger btn-block">Excluir todos</button>
 
       <div class="panel panel-default">
+        <div class="panel-heading">Cadastrar nova reserva</div>
+        <div class="panel-body">
+          <form name="formularioReserva">
+
+            <div class="form-group">
+              <label>Local/Filiais</label>
+              <select class="form-control" ng-model="reserva.local" name="local" ng-options="local for local in locais" required>
+                <option selected="selected" value="">-- SELECIONE --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Carro</label>
+              <select class="form-control" ng-model="reserva.carro" name="carro" ng-options="carro for carro in carros" required>
+                <option selected="selected" value="">-- SELECIONE --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Data inicial</label>
+              <input type="datetime-local" class="form-control" ng-model="reserva.dataInicio" name="dataInicio" placeholder="Selecione a data inicial" required>
+            </div>
+
+            <div class="form-group">
+              <label>Data final</label>
+              <input type="datetime-local" class="form-control" ng-model="reserva.dataFim"
+              name="dataFim" placeholder="Selecione a data final" required>
+            </div>
+
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="reserva.cafe" name="cafe">Com café
+              </label>
+            </div>
+
+            <div class="form-group" ng-if="reserva.cafe">
+              <label>Quantidade de pessoasl para o café</label>
+              <input type="number" class="form-control" ng-model="reserva.qtdePessoas"
+              name="qtdePessoas" placeholder="Informe a quandidade de pessoas" required>
+            </div>
+
+            <div class="form-group">
+              <label>Responsável</label>
+              <input type="text" class="form-control" ng-model="reserva.responsavel"
+              name="responsavel" placeholder="Informe o responsável" required>
+            </div>
+
+            <div class="form-group">
+              <label>Descrição</label>
+              <textarea class="form-control" ng-model="reserva.descricao" name="descricao"
+              placeholder="Descreva sobre a reserva"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-default">Cancelar</button>
+            <button type="submit" class="btn btn-primary" ng-click="salvar()">Salvar</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="panel panel-default">
         <div class="panel-heading">
           Listagem de reservas
         </div>
-        <div class="panel-body" ng-if="!lista.length">Não existem reservas cadstradas</div>
+        <div class="panel-body" ng-if="!reservas.length">Não existem reservas cadstradas</div>
 
-        <ul class="list-group visible-xs" ng-if=lista.length>
-          <li class="list-group-item" ng-repeat="reserva in lista">
+        <ul class="list-group visible-xs" ng-if=reservas.length>
+          <li class="list-group-item" ng-repeat="reserva in reservas">
             <div class="row">
               <div class="col-xs-2">
                 <div class="checkbox">
@@ -98,7 +158,7 @@
           </li>
         </ul>
 
-        <table class="table .table-hover hidden-xs" ng-if=lista.length>
+        <table class="table .table-hover hidden-xs" ng-if=reservas.length>
           <thead>
             <tr>
               <th></th>
@@ -112,7 +172,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="reserva in lista">
+            <tr ng-repeat="reserva in reservas">
               <td>
                 <div class="checkbox">
                   <label>
