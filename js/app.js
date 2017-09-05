@@ -7,7 +7,10 @@ app.controller('ListController', function($scope) {
 var modalExcluir = $('#confirmaExclusao');
   $scope.reserva = {};
 
-  $scope.lista = [
+  $scope.locais = ['Florianópolis/Capoeiras', 'Florianópolis/Centro', 'Londrina/Centro', 'Londrina/Gleba Palhano'];
+  $scope.carros = ['Renault Logan', 'Volkswagem Jetta', 'Fiat Punto'];
+
+  $scope.reservas = [
     {
       local : 'Centro',
       carro : 'Golf',
@@ -38,6 +41,10 @@ var modalExcluir = $('#confirmaExclusao');
     }
   ];
 
+  $scope.salvar = function salvar() {
+    $scope.reservas.push($scope.reserva)
+  }
+
   $scope.abreModalExclusao = function abreModalExclusao(reserva, indice) {
     $scope.reserva = reserva;
     $scope.indiceParaExcluir = indice;
@@ -45,7 +52,7 @@ var modalExcluir = $('#confirmaExclusao');
   }
 
   $scope.excluir = function excluir(indice) {
-    $scope.lista.splice(indice, 1);
+    $scope.reservas.splice(indice, 1);
     modalExcluir.modal('hide');
   }
 
