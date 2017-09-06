@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,203 +14,9 @@
   </head>
 
   <!-- SETANDO O NOME DO MÓDULO CRIADO NO JAVASCRIPT E SETANDO O CONTROLLER A SER UTILIZADO NESSA PÁGINA -->
-  <body ng-app="app" ng-controller="ListController">
+  <body>
     <div class="container">
-      <!-- botão cadstrar -->
-      <button class="btn btn-primary btn-block" >Cadstrar Reserva</button>
-
-      <!-- botão excluir -->
-      <button class="btn btn-danger btn-block">Excluir todos</button>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">Cadastrar nova reserva</div>
-        <div class="panel-body">
-          <form name="formularioReserva">
-
-            <div class="form-group">
-              <label>Local/Filiais</label>
-              <select class="form-control" ng-model="reserva.local" name="local" ng-options="local for local in locais" required>
-                <option selected="selected" value="">-- SELECIONE --</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Carro</label>
-              <select class="form-control" ng-model="reserva.carro" name="carro" ng-options="carro for carro in carros" required>
-                <option selected="selected" value="">-- SELECIONE --</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>Data inicial</label>
-              <input type="datetime-local" class="form-control" ng-model="reserva.dataInicio" name="dataInicio" placeholder="Selecione a data inicial" required>
-            </div>
-
-            <div class="form-group">
-              <label>Data final</label>
-              <input type="datetime-local" class="form-control" ng-model="reserva.dataFim"
-              name="dataFim" placeholder="Selecione a data final" required>
-            </div>
-
-            <div class="checkbox">
-              <label>
-                <input type="checkbox" ng-model="reserva.cafe" name="cafe">Com café
-              </label>
-            </div>
-
-            <div class="form-group" ng-if="reserva.cafe">
-              <label>Quantidade de pessoasl para o café</label>
-              <input type="number" class="form-control" ng-model="reserva.qtdePessoas"
-              name="qtdePessoas" placeholder="Informe a quandidade de pessoas" required>
-            </div>
-
-            <div class="form-group">
-              <label>Responsável</label>
-              <input type="text" class="form-control" ng-model="reserva.responsavel"
-              name="responsavel" placeholder="Informe o responsável" required>
-            </div>
-
-            <div class="form-group">
-              <label>Descrição</label>
-              <textarea class="form-control" ng-model="reserva.descricao" name="descricao"
-              placeholder="Descreva sobre a reserva"></textarea>
-            </div>
-
-            <button type="submit" class="btn btn-default">Cancelar</button>
-            <button type="submit" class="btn btn-primary" ng-click="salvar()">Salvar</button>
-          </form>
-        </div>
-      </div>
-
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          Listagem de reservas
-        </div>
-        <div class="panel-body" ng-if="!reservas.length">Não existem reservas cadstradas</div>
-
-        <ul class="list-group visible-xs" ng-if=reservas.length>
-          <li class="list-group-item" ng-repeat="reserva in reservas">
-            <div class="row">
-              <div class="col-xs-2">
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" />
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Local/Filiais
-              </div>
-              <div class="col-xs-6">
-                {{reserva.local}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Carro
-              </div>
-              <div class="col-xs-6">
-                {{reserva.carro}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Início
-              </div>
-              <div class="col-xs-6">
-               {{reserva.dataInicio}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Fim
-              </div>
-              <div class="col-xs-6">
-                {{reserva.dataFim}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Responsável
-              </div>
-              <div class="col-xs-6">
-                {{reserva.responsavel}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-4">
-                Descrição
-              </div>
-              <div class="col-xs-6">
-                {{reserva.descricao}}
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-xs-6">
-                <button class="btn btn-warning btn-block">Editar</button>
-              </div>
-              <div class="col-xs-6">
-                <button class="btn btn-danger btn-block" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <table class="table .table-hover hidden-xs" ng-if=reservas.length>
-          <thead>
-            <tr>
-              <th></th>
-              <th class="text-center">Carro</th>
-              <th class="text-center">Local/Filiais</th>
-              <th class="text-center">Início</th>
-              <th class="text-center">Fim</th>
-              <th class="text-center">Responsável</th>
-              <th class="text-center">Descrição</th>
-              <th class="text-center">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr ng-repeat="reserva in reservas">
-              <td>
-                <div class="checkbox">
-                  <label>
-                    <input type="checkbox" />
-                  </label>
-                </div>
-              </td>
-              <td>{{reserva.local}}</td>
-              <td>{{reserva.carro}}</td>
-              <td>{{reserva.dataInicio}}</td>
-              <td>{{reserva.dataFim}}</td>
-              <td>{{reserva.responsavel}}</td>
-              <td>{{reserva.descricao}}</td>
-              <td class="text-center">
-                <button class="btn btn-warning">Editar</button>
-                <button class="btn btn-danger" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="modal fade" id="confirmaExclusao" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            </div>
-            <div class="modal-body">
-              <p>Deseja realmente excluir a reserva: {{ reserva.local }} - {{ reserva.carro }} - {{ reserva.dataInicio }}</p>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-              <button type="button" class="btn btn-primary" ng-click="excluir()">Excluir</button>
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
-      </div><!-- /.modal -->
-
+      <div ng-view></div>
     </div>
 
     <!-- IMPORTANDO O JQUERY -->
@@ -219,10 +25,16 @@
     <!-- IMPORTANDO O ANGULARJS -->
     <script src="node_modules/angular/angular.min.js"></script>
 
+    <!-- IMPORTANDO O ANGULAR ROUTES -->
+    <script src="node_modules/angular-route/angular-route.js"></script>
+
     <!-- IMPORTANDO O JAVASCRIPT DO BOOTSTRAP -->
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
     <!-- IMPORTANDO O JAVASCRIPT PRINCIPAL DO PROJETO -->
     <script src="js/app.js"></script>
+
+    <script src="js/controllers/cadastroController.js"></script>
+    <script src="js/controllers/listaController.js"></script>
   </body>
 </html>
