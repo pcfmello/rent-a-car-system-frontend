@@ -1,7 +1,7 @@
 {
   "name": "rent-a-car-system",
   "version": "1.0.0",
-  "description": "Sistema de gerenciamento de aluguel de veículos (em desenvolvimento)",
+  "description": "Projeto Front-End do Sistema de gerenciamento de aluguel de veículos (em desenvolvimento)",
   "main": "app.js",
   "dependencies": {
     "angular": "^1.6.6",
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pcfmello/rent-a-car-system.git"
+    "url": "git+https://github.com/pcfmello/rent-a-car-system-frontend.git"
   },
-  "author": "Paulo Cesar Ferreira de Mello e Lucas Vaz Tassoni",
+  "author": "Paulo Cesar Ferreira de Mello",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/pcfmello/rent-a-car-system/issues"
+    "url": "https://github.com/pcfmello/rent-a-car-system-frontend/issues"
   },
-  "homepage": "https://github.com/pcfmello/rent-a-car-system#readme"
+  "homepage": "https://github.com/pcfmello/rent-a-car-system-frontend#readme"
 }
