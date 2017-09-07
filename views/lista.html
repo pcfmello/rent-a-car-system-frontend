@@ -71,7 +71,7 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <button class="btn btn-warning btn-block">Editar</button>
+          <button class="btn btn-warning btn-block" ng-click="editar($index)">Editar</button>
         </div>
         <div class="col-xs-6">
           <button class="btn btn-danger btn-block" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
@@ -109,7 +109,7 @@
         <td>{{reserva.responsavel}}</td>
         <td>{{reserva.descricao}}</td>
         <td class="text-center">
-          <button class="btn btn-warning">Editar</button>
+          <button class="btn btn-warning" ng-click="editar($index)">Editar</button>
           <button class="btn btn-danger" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
         </td>
       </tr>

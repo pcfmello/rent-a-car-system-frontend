@@ -38,6 +38,10 @@ app.controller('ListaController', function($scope, $location) {
     $location.path('/cadastro');
   }
 
+  $scope.editar = function editar(id) {
+    $location.path('/cadastro/' + id);
+  }
+
   $scope.abreModalExclusao = function abreModalExclusao(reserva, indice) {
     $scope.reserva = reserva;
     $scope.indiceParaExcluir = indice;

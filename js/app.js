@@ -12,6 +12,10 @@ app.config(function($routeProvider, $locationProvider) {
       templateUrl: 'views/cadastro.html',
       controller : 'CadastroController'
     })
+    .when('/cadastro/:id', {
+      templateUrl: 'views/cadastro.html',
+      controller : 'CadastroController'
+    })
     .otherwise({
       redirectTo: '/'
     });
