@@ -26,7 +26,7 @@
           Local/Filiais
         </div>
         <div class="col-xs-6">
-          {{reserva.local}}
+          {{reserva.local.local}}/{{reserva.local.filial}}
         </div>
       </div>
       <div class="row">
@@ -102,7 +102,7 @@
             </label>
           </div>
         </td>
-        <td>{{reserva.local}}</td>
+        <td>{{reserva.local.local}}/{{reserva.local.filial}}</td>
         <td>{{reserva.carro}}</td>
         <td>{{reserva.dataInicio}}</td>
         <td>{{reserva.dataFim}}</td>
