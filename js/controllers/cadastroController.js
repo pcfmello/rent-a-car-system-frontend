@@ -26,6 +26,11 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
 
   $scope.salvar = function salvar() {
     console.log($scope.reserva);
+    $http.post('http://localhost:5000/reservas', $scope.reserva)
+      .then(function(response) {
+          console.log(response);
+      });
+
   }
 
   $scope.cancelar = function cancelar() {
