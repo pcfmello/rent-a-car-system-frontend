@@ -26,7 +26,7 @@
           Local/Filiais
         </div>
         <div class="col-xs-6">
-          {{reserva.local}}
+          {{reserva.local.nome}}
         </div>
       </div>
       <div class="row">
@@ -34,7 +34,7 @@
           Carro
         </div>
         <div class="col-xs-6">
-          {{reserva.carro}}
+          {{reserva.carro.nome}}
         </div>
       </div>
       <div class="row">
@@ -103,7 +103,7 @@
           </div>
         </td>
         <td>{{reserva.local}}</td>
-        <td>{{reserva.carro}}</td>
+        <td>{{reserva.carro.nome}}</td>
         <td>{{reserva.dataInicio | date: "dd/MM/yyyy ' às ' hh:mm 'hs'"}}</td>
         <td>{{reserva.dataFim | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}</td>
         <td>{{reserva.responsavel}}</td>
@@ -124,7 +124,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <p>Deseja realmente excluir a reserva: {{ reserva.local }} - {{ reserva.carro }} - {{ reserva.dataInicio }}</p>
+        <p>Deseja realmente excluir a reserva: {{ reserva.local.nome }} - {{ reserva.carro.nome }} - {{ reserva.dataInicio | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

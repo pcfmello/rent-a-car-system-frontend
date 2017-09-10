@@ -15,18 +15,11 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
   }
 
   $scope.locais = [];
-  $scope.carros = [];
 
   // Requisição AJAX para obter a lista de filiais do backend
-  $http.get('http://localhost:5000/filiais')
+  $http.get('http://localhost:5000/locais')
     .then(function(response) {
       $scope.locais = response.data;
-    });
-
-  // Requisição AJAX para obter a lista de carros do backend
-  $http.get('http://localhost:5000/carros')
-    .then(function(response) {
-      $scope.carros = response.data;
     });
 
   // Requisição AJAX para salvar ou atualizar a reserva do backend

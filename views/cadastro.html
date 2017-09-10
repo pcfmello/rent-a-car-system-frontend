@@ -5,21 +5,24 @@
       <div class="form-group">
         <label>Local/Filiais</label>
         <select class="form-control" ng-model="reserva.local" name="local"
-            ng-options="local for local in locais" required>
+            ng-options="local.nome for local in locais track by local._id" required>
           <option selected="selected" value="">-- SELECIONE --</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>Carro</label>
-        <select class="form-control" ng-model="reserva.carro" name="carro" ng-options="carro for carro in carros" required>
+        <select class="form-control" ng-model="reserva.carro" name="carro"
+            ng-options="carro.nome for carro in reserva.local.carros track by carro.nome"
+            ng-disabled="!reserva.local" required>
           <option selected="selected" value="">-- SELECIONE --</option>
         </select>
       </div>
 
       <div class="form-group">
         <label>Data inicial</label>
-        <input type="datetime-local" class="form-control" ng-model="reserva.dataInicio" name="dataInicio" placeholder="Selecione a data inicial" required>
+        <input type="datetime-local" class="form-control" ng-model="reserva.dataInicio"
+            name="dataInicio" placeholder="Selecione a data inicial" required>
       </div>
 
       <div class="form-group">
@@ -37,7 +40,7 @@
       <div class="form-group" ng-if="reserva.cafe">
         <label>Quantidade de pessoasl para o café</label>
         <input type="number" class="form-control" ng-model="reserva.quantidadePessoas"
-        name="quantidadePessoas" placeholder="Informe a quandidade de pessoas" required>
+            name="quantidadePessoas" placeholder="Informe a quandidade de pessoas" required>
       </div>
 
       <div class="form-group">
