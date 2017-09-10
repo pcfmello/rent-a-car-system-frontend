@@ -7,6 +7,8 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
     $http.get('http://localhost:5000/reservas/' + idReserva)
       .then(function(response) {
         $scope.reserva = response.data;
+        $scope.reserva.dataInicio = new Date($scope.reserva.dataInicio);
+        $scope.reserva.dataFim = new Date($scope.reserva.dataFim);
       });
   } else {
     $scope.reserva = {};
