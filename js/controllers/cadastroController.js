@@ -3,12 +3,15 @@ var app = angular.module('app');
 app.controller('CadastroController', function($scope, $location, $routeParams, $http) {
   var idReserva = $routeParams.id // ID enviado por quem requisitou a rota
   if(idReserva) {
-    console.log('editar contato | id =>', idReserva);
+    // Requisição AJAX para obter a reserva pelo ID
+    $http.get('http://localhost:5000/reservas/' + idReserva)
+      .then(function(response) {
+        $scope.reserva = response.data;
+      });
   } else {
-    console.log('cadastrar contato');
+    $scope.reserva = {};
   }
 
-  $scope.reserva = {};
   $scope.locais = [];
   $scope.carros = [];
 
@@ -24,17 +27,23 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
       $scope.carros = response.data;
     });
 
-  $scope.salvar = function salvar() {
-    console.log($scope.reserva);
-    $http.post('http://localhost:5000/reservas', $scope.reserva)
-      .then(function(response) {
-          console.log(response);
+  // Requisição AJAX para salvar ou atualizar a reserva do backend
+  $scope.salvar = function salvar(formularioEhValido) {
+    if(!formularioEhValido) return;
+    if($scope.reserva._id) {
+      $http.put('http://localhost:5000/reservas', $scope.reserva)
+        .then(function(response) {
+            $location.path('/');
+        });
+    } else {
+      $http.post('http://localhost:5000/reservas', $scope.reserva)
+        .then(function(response) {
+          $location.path('/');
       });
-
+    }
   }
 
   $scope.cancelar = function cancelar() {
     $location.path('/');
   }
-
 });

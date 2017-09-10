@@ -26,7 +26,7 @@
           Local/Filiais
         </div>
         <div class="col-xs-6">
-          {{reserva.local.local}}/{{reserva.local.filial}}
+          {{reserva.local}}
         </div>
       </div>
       <div class="row">
@@ -42,7 +42,7 @@
           Início
         </div>
         <div class="col-xs-6">
-         {{reserva.dataInicio}}
+         {{reserva.dataInicio | date: 'dd/MM/yyyy hh:mm'}}
         </div>
       </div>
       <div class="row">
@@ -50,7 +50,7 @@
           Fim
         </div>
         <div class="col-xs-6">
-          {{reserva.dataFim}}
+          {{reserva.dataFim | date: 'dd/MM/yyyy hh:mm'}}
         </div>
       </div>
       <div class="row">
@@ -71,7 +71,7 @@
       </div>
       <div class="row">
         <div class="col-xs-6">
-          <button class="btn btn-warning btn-block" ng-click="editar($index)">Editar</button>
+          <button class="btn btn-warning btn-block" ng-click="editar(reserva._id)">Editar</button>
         </div>
         <div class="col-xs-6">
           <button class="btn btn-danger btn-block" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
@@ -102,14 +102,14 @@
             </label>
           </div>
         </td>
-        <td>{{reserva.local.local}}/{{reserva.local.filial}}</td>
+        <td>{{reserva.local}}</td>
         <td>{{reserva.carro}}</td>
-        <td>{{reserva.dataInicio}}</td>
-        <td>{{reserva.dataFim}}</td>
+        <td>{{reserva.dataInicio | date: 'dd/MM/yyyy hh:mm'}}</td>
+        <td>{{reserva.dataFim | date: 'dd/MM/yyyy hh:mm'}}</td>
         <td>{{reserva.responsavel}}</td>
         <td>{{reserva.descricao}}</td>
         <td class="text-center">
-          <button class="btn btn-warning" ng-click="editar($index)">Editar</button>
+          <button class="btn btn-warning" ng-click="editar(reserva._id)">Editar</button>
           <button class="btn btn-danger" ng-click="abreModalExclusao(reserva, $index)">Excluir</button>
         </td>
       </tr>
