@@ -20,15 +20,21 @@
       </div>
 
       <div class="form-group">
-        <label>Data inicial</label>
-        <input type="datetime-local" class="form-control" ng-model="reserva.dataInicio"
-            name="dataInicio" placeholder="Selecione a data inicial" required>
+        <label>Data</label>
+        <input type="text" id="data" class="form-control" ng-model="reserva.data"
+            name="data" placeholder="Selecione a data" required>
       </div>
 
       <div class="form-group">
-        <label>Data final</label>
-        <input type="datetime-local" class="form-control" ng-model="reserva.dataFim"
-            name="dataFim" placeholder="Selecione a data final" required>
+        <label>Início</label>
+        <input type="text" id="horaInicio" class="componente-hora form-control" ng-model="reserva.horaInicio"
+            name="horaInicio" placeholder="Selecione a hora inicial" required>
+      </div>
+
+      <div class="form-group">
+        <label>Fim</label>
+        <input type="text" id="horaFim" class="componente-hora form-control" ng-model="reserva.horaFim"
+            name="horaFim" placeholder="Selecione a hora final" required>
       </div>
 
       <div class="checkbox">

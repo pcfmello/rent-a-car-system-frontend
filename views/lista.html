@@ -42,7 +42,7 @@
           Início
         </div>
         <div class="col-xs-6">
-         {{reserva.dataInicio | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}
+         {{reserva.data}} {{reserva.horaInicio | date: "'às ' hh:mm 'hs'"}}
         </div>
       </div>
       <div class="row">
@@ -50,7 +50,7 @@
           Fim
         </div>
         <div class="col-xs-6">
-          {{reserva.dataFim | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}
+          {{reserva.data}} {{reserva.horaFim | date: "'às ' hh:mm 'hs'"}}
         </div>
       </div>
       <div class="row">
@@ -104,8 +104,8 @@
         </td>
         <td>{{reserva.local.nome}}</td>
         <td>{{reserva.carro.nome}}</td>
-        <td>{{reserva.dataInicio | date: "dd/MM/yyyy ' às ' hh:mm 'hs'"}}</td>
-        <td>{{reserva.dataFim | date: "dd/MM/yyyy 'às' hh:mm 'hs'"}}</td>
+        <td>{{reserva.data}} {{reserva.horaInicio | date: "'às ' hh:mm 'hs'"}}</td>
+        <td>{{reserva.data}} {{reserva.horaFim | date: "'às' hh:mm 'hs'"}}</td>
         <td>{{reserva.responsavel}}</td>
         <td>{{reserva.descricao}}</td>
         <td class="text-center">

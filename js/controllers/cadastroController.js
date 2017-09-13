@@ -1,9 +1,18 @@
 var app = angular.module('app');
 
 app.controller('CadastroController', function($scope, $location, $routeParams, $http) {
+  // Inicializa JQuery-UI Datepicker no input #data
+  $("#data").datepicker({
+    minDate: '0', // Seta a data mínima para o dia corrente
+  });
+
+  // Inicializa o JQuery Timepicker no input #dataInicio
+  $('.componente-hora').timepicker({
+    wrapHours: true, // Formato 24hs (22:30)
+    timeFormat: 'H:i' // Formato hora:minuto
+  });
 
   $scope.locais = [];
-  $scope.reservaJaExiste = false;
   var idReserva = $routeParams.id // ID enviado por quem requisitou a rota
 
   // Verifica se existe cadastro para editar ou cria um novo cadastro
@@ -12,8 +21,8 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
     $http.get('http://localhost:5000/reservas/' + idReserva)
       .then(function(response) {
         $scope.reserva = response.data;
-        $scope.reserva.dataInicio = new Date($scope.reserva.dataInicio);
-        $scope.reserva.dataFim = new Date($scope.reserva.dataFim);
+        $scope.reserva.horaInicio = converteDataHoraParaString($scope.reserva.horaInicio);
+        $scope.reserva.horaFim = converteDataHoraParaString($scope.reserva.horaFim);
       });
   } else {
     $scope.reserva = {};
@@ -25,18 +34,40 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
       $scope.locais = response.data;
     });
 
+  function converteStringParaDataHora(dataTexto, horaTexto) {
+    var dataSplit = dataTexto.split('/');
+    var horaSplit = horaTexto.split(':');
+    return new Date(Date.UTC(dataSplit[2], dataSplit[1], dataSplit[0],
+      horaSplit[0], horaSplit[1], 0, 0));
+  }
+
+  function converteDataHoraParaString(dataHora) {
+    var horas = dataHora.split('T')[1];
+    var hora = Number(horas.split(':')[0]);
+    var minuto = horas.split(':')[1];
+    return hora + ':' + minuto;
+  }
+
   // Requisição AJAX para salvar ou atualizar a reserva do backend
   $scope.salvar = function salvar(formularioEhValido) {
+    $scope.reservaJaExiste = false;
+
+    var horaInicio =
+        converteStringParaDataHora($scope.reserva.data, $scope.reserva.horaInicio);
+    var horaFim =
+        converteStringParaDataHora($scope.reserva.data, $scope.reserva.horaFim);
 
     // Consulta se há reservas com esse local, veículo e entre as datas e horários
     $http.post('http://localhost:5000/reservas/consulta', {
-        local: $scope.reserva.local._id,
+        local: $scope.reserva.local,
         carro: $scope.reserva.carro,
-        dataInicio: $scope.reserva.dataInicio,
-        dataFim: $scope.reserva.dataFim
+        data: $scope.reserva.data,
+        horaInicio: horaInicio,
+        horaFim: horaFim
       })
       .then(function(response) {
-        $scope.reservaJaExiste = !!response.data.length;
+        console.log(response);
+        $scope.reservaJaExiste = response.data;
         // Se reserva está disponível, cria/altera uma reserva
         if(!$scope.reservaJaExiste) {
           if(!formularioEhValido) return;
@@ -52,6 +83,7 @@ app.controller('CadastroController', function($scope, $location, $routeParams, $
             });
           }
         } else {
+          $scope.reservaJaExiste = true;
           console.log("Reserva já existe");
         }
       });
